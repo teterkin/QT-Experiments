@@ -1,6 +1,9 @@
 import sys
 
-from PySide6.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox, QPushButton
+from PySide6.QtWidgets import (
+    QApplication, QMainWindow, 
+    QMessageBox, QPushButton
+)
 
 
 class MainWindow(QMainWindow):
@@ -14,14 +17,14 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(button)
 
     def button_clicked(self, s):
-        dlg = QMessageBox(self)
-        dlg.setWindowTitle("I have a question!")
-        dlg.setText("This is a simple dialog")
-        button = dlg.exec()
 
-        if button == QMessageBox.Ok:
-            print("OK!")
+        button = QMessageBox.question(self, "Question dialog", 
+                                      "\nIs this message longer?\n")
 
+        if button == QMessageBox.Yes:
+            print("Yes!")
+        else:
+            print("No!")
 
 app = QApplication(sys.argv)
 
